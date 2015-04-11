@@ -50,17 +50,29 @@ $(function() {
     return false;
   });
 
-    $.getJSON('/_get_regions', {
+  $.getJSON('/_get_regions', {
     }, function(data) {
       if (data.regions.length!==0) {
         for (i = 0; i < data.regions.length; i++) {
           $('#region').append($('<option>', {
-              value: data.regions[i],
-              text: data.regions[i]
+              value: data.regions[i].id,
+              text: data.regions[i].description
           }));
         }
       }
     });
+
+    $.getJSON('/_get_l_groups?region=' + $('#region').val(), {
+      }, function(data) {
+        if (data.regions.length!==0) {
+          for (i = 0; i < data.regions.length; i++) {
+            $('#log_group_name').append($('<option>', {
+                value: data.regions[i].name,
+                text: data.regions[i].description
+            }));
+          }
+        }
+      });
 
 
   $('#export').on('click', function() {
