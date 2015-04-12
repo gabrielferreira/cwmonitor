@@ -14,7 +14,6 @@ def get_regions():
     regions = ec2.regions()
     return jsonify(regions=[r.name for r in regions])
 
-
 @app.route('/_get_l_groups/<region>')
 def get_log_groups():
     return ''
